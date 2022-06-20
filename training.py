@@ -4,7 +4,7 @@ import numpy as np
 
 dataPath = 'Data'
 peopleList = os.listdir(dataPath)
-print('Lista de personas: ', peopleList)
+print('People listing: ', peopleList)
 
 labels = []
 facesData = []
@@ -12,7 +12,7 @@ label = 0
 
 for nameDir in peopleList:
     personPath = dataPath + '/' + nameDir
-    print('Leyendo las imágenes')
+    print('Reading images:')
 
     for fileName in os.listdir(personPath):
         print('Rostros: ', nameDir + '/' + fileName)
@@ -22,8 +22,8 @@ for nameDir in peopleList:
 
 face_recognizer = cv2.face.LBPHFaceRecognizer_create()
 
-print("Entrenando...")
+print("Training...")
 face_recognizer.train(facesData, np.array(labels))
 
 face_recognizer.write('modeloLBPHFace.xml')
-print("Modelo almacenado...")
+print("Model saved as modeloLBPHFace.xml ...")

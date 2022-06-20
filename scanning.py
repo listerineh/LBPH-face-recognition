@@ -2,17 +2,17 @@ import cv2
 import os
 import imutils
 
-personName = input("Ingrese su nombre: ")
+personName = input("Enter your name: ")
 dataPath = 'Data'
 personPath = dataPath + '/' + personName
 
 if not os.path.exists(personPath):
     count = 0
     os.makedirs(personPath)
-    print('Carpeta creada: ',personPath)
+    print('New Folder: ',personPath)
 else:
     count = len(os.listdir(personPath))
-    print(f'Carpeta contiene {count} fotos, se agregaran nuevas')
+    print(f'This folder has {count} photos, new ones will be added to it')
 
 breakCondition = count + 300
 cap = cv2.VideoCapture(0,cv2.CAP_DSHOW)
@@ -33,7 +33,7 @@ while True:
         rostro = cv2.resize(rostro,(150,150),interpolation=cv2.INTER_CUBIC)
         cv2.imwrite(personPath + '/rostro_{}.jpg'.format(count),rostro)
         count = count + 1
-        cv2.putText(frame, f"Rostros detectados: {count}", (x, y-20), 2,
+        cv2.putText(frame, f"Detected faces: {count}", (x, y-20), 2,
                         0.8, (0, 0, 255), 1, cv2.LINE_AA)
     cv2.imshow('frame',frame)
     
